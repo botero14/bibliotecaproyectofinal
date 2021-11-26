@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<center>
+  <h3>LISTADO DE AUTORES</h3>
+</center>
+
+<h1 class="pull-right">
+  <a href="{% url 'autores:autorCreate' %}" class="btn btn-primary pull-right"><i class="fas fa-user-plus"></i></a>
+</h1>
+
+<table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">codigo</th>
+        <th scope="col">nombre</th>
+        <th scope="col">ajustes</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if autor %}
+          {% for autores in autor %}
+            <tr>
+              <td>{{ autores.id }}</td>
+              <td>{{ autores.codigo }}</td>
+              <td>{{ autores.nombre }}</td>
+              <td>
+              <a class="btn btn-warning" href="{% url 'autores:autorEdit' autores.id %}">
+                <i class="fas fa-user-edit"></i>
+              </a>
+              <a class="btn btn-danger" href="{% url 'autores:autorEli' autores.id %}">
+                <i class="fas fa-trash-alt"></i>
+              </a>
+            </td>
+            </tr>
+          {% endfor %}
+          {% else %}
+          <h3>NO EXISTEN REGISTROS</h3>
+        {% endif %}
+    </tbody>
+  </table>
+
+{% endblock %}
