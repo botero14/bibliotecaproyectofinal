@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<form method="post">
+
+    {% csrf_token %}
+
+    <center>
+        <h3>DESEA ELIMINAR ESTE REGISTRO</h3>
+        <button class="btn btn-danger" type="submit">ELIMINAR</button>
+    </center>
+
+</form>
+
+{% endblock %}

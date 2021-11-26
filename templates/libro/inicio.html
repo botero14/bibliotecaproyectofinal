@@ -1,0 +1,51 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<center>
+  <h3>LISTADO DE LIBROS</h3>
+  </center>
+
+<h1 class="pull-right">
+  <a href="{% url 'libros:libroCreate' %}" class="btn btn-primary pull-right"><i class="fas fa-user-plus"></i></a>
+</h1>
+
+<table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">codigo</th>
+        <th scope="col">titulo</th>
+        <th scope="col">ISBN</th>
+        <th scope="col">editorial</th>
+        <th scope="col">numero de paginas</th>
+        <th scope="col">ajustes</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if libro %}
+          {% for libros in libro %}
+            <tr>
+              <td>{{ libros.id }}</td>
+              <td>{{ libros.codigo }}</td>
+              <td>{{ libros.titulo }}</td>
+              <td>{{ libros.isbn }}</td>
+              <td>{{ libros.editorial }}</td>
+              <td>{{ libros.numeropagina }}</td>
+              <td>
+              <a class="btn btn-warning" href="{% url 'libros:libroEdit' libros.id %}">
+                <i class="fas fa-user-edit"></i>
+              </a>
+              <a class="btn btn-danger" href="{% url 'libros:libroEli' libros.id %}">
+                <i class="fas fa-trash-alt"></i>
+              </a>
+            </td>
+            </tr>
+          {% endfor %}
+          {% else %}
+          <h3>NO EXISTEN REGISTROS</h3>
+        {% endif %}
+    </tbody>
+  </table>
+
+{% endblock %}
